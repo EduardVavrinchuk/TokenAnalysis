@@ -1,29 +1,36 @@
 package main.java.com.vavrinchuk.bancor.common.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 public class TransferEvent {
 	
-	private int id;
+	private Long id;
 	private String receiver;
 	private String sender;
-	private Integer value;
-	private Integer blockNumber;
+	private Long value;
+	private Long blockNumber;
 	private String transactionHash;
 	private String contractAddress;
-	private Long creationDate;
+	private Timestamp creationDate;
+	
 	
 	public TransferEvent() {
 		
 	}
 	
 	public TransferEvent(
+			Long id,
 			String receiver,
 			String sender,
-			Integer value,
-			Integer blockNumber,
+			Long value,
+			Long blockNumber,
 			String TransactionHash,
 			String contractAddress,
-			Long CreationDate
+			Timestamp CreationDate
 			) {
+		this.id = id;
 		this.receiver = receiver;
 		this.sender = sender;
 		this.value = value;
@@ -33,11 +40,11 @@ public class TransferEvent {
 		this.creationDate = CreationDate;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -57,19 +64,19 @@ public class TransferEvent {
 		this.sender = sender;
 	}
 
-	public Integer getValue() {
+	public Long getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(Long value) {
 		this.value = value;
 	}
 
-	public Integer getBlockNumber() {
+	public Long getBlockNumber() {
 		return blockNumber;
 	}
 
-	public void setBlockNumber(Integer blockNumber) {
+	public void setBlockNumber(Long blockNumber) {
 		this.blockNumber = blockNumber;
 	}
 
@@ -89,12 +96,24 @@ public class TransferEvent {
 		this.contractAddress = contractAddress;
 	}
 
-	public Long getCreationDate() {
+	public Timestamp getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Long creationDate) {
+	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
 	
+	public static TransferEvent getTransferEvent(ResultSet resultSet) throws SQLException {
+			return new TransferEvent(
+					resultSet.getLong("id"), 
+					resultSet.getString("receiver"), 
+					resultSet.getString("sender"),
+					resultSet.getLong("value"), 
+					resultSet.getLong("block_number"), 
+					resultSet.getString("transaction_hash"),
+					resultSet.getString("contract_address"), 
+					resultSet.getTimestamp("creation_date")
+					);
+		}
 }
