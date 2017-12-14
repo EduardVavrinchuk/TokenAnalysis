@@ -32,7 +32,7 @@ public class TokenDAOService implements ITokenDAOService{
 		setConnection();
 	}
 	
-	private static void setConnection() {
+	public static void setConnection() {
 		try {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			} catch (SQLException e) {

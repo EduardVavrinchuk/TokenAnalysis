@@ -13,8 +13,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import main.java.com.vavrinchuk.bancor.common.entity.TransferEvent;
+import main.java.com.vavrinchuk.bancor.common.interfaces.IFileGenerator;
 
-public class FileGenerator {
+public class FileGenerator implements IFileGenerator{
 	private static final Logger logger = Logger.getLogger(FileGenerator.class.getName());
 	
 	private XSSFWorkbook workbook = new XSSFWorkbook();
