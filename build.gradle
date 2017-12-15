@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
-mainClassName = 'com.vavrinchuk.bancor.Main'
+mainClassName = 'main.java.com.vavrinchuk.bancor.Main'
 
 repositories {
 	mavenCentral()
